@@ -1,0 +1,143 @@
+version: "2"
+
+networks:
+  app-net:
+    ipam:
+      config:
+        - subnet: 10.1.2.0/24
+          gateway: 10.1.2.1
+
+services:
+  app:
+    build: .
+    hostname: app
+    container_name: app
+    env_file:
+      - ../../.env
+    user: node
+    ports:
+      - 8080:${PORT}
+    #  - 3030:3030
+    #  - 9229:9229
+    #links:
+    #  - db:mysql
+    #  - s3
+    # - mailhog:mailhog
+    volumes:
+      - ../../:/var/www/html
+      - ~/.ssh:/home/node/.ssh
+      - ~/.gitconfig:/home/node/.gitconfig
+      - ../.vscode-server:/home/node/.vscode-server
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      DEBUG: ${DEBUG}
+      DB_ROOTPASS: ${DB_ROOTPASS}
+      DB_HOSTNAME: ${DB_HOSTNAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      SMTP_HOSTNAME: ${SMTP_HOSTNAME}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_PORT: ${SMTP_PORT}
+      S3_ENABLED: ${S3_ENABLED}
+      S3_HOST: ${S3_HOST}
+      S3_PORT: ${S3_PORT}
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY}
+      S3_ACCESS_SECRET: ${S3_ACCESS_SECRET}
+      S3_USE_SSL: ${S3_USE_SSL}
+      S3_REGION: ${S3_REGION}
+    dns: 208.67.222.222
+    networks:
+      - app-net
+    command: sleep infinity
+    #command: npm run dev
+  # db:
+  #   image: mariadb
+  #   hostname: db
+  #   container_name: db
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root-mysql-password-changeme
+  #   networks:
+  #     - app-net
+  # s3:
+  #   image: minio/minio
+  #   hostname: s3
+  #   container_name: s3
+  #   user: ${CURRENT_UID}
+  #   ports:
+  #     - 9000:9000
+  #   environment:
+  #     MINIO_ACCESS_KEY: 12345678
+  #     MINIO_SECRET_KEY: 12345678
+  #     MINIO_BROWSER: "on"
+  #   volumes:
+  #     - ../../src/public:/data
+  #     - ../minio:/root/.minio
+  #   networks:
+  #     - app-net
+  #   command: server /data/
+  # adminer:
+  #   image: adminer
+  #   hostname: adminer
+  #   container_name: adminer
+  #   ports:
+  #     - 8888:8080
+  #   networks:
+  #     - app-net
+  # ngrok:
+  #   build: ./ngrok
+  #   container_name: ngrok
+  #   ports:
+  #     - 4040:4040
+  #   links:
+  #     - app
+  #   networks:
+  #     - app-net
+  # mailhog:
+  #   image: mailhog/mailhog:v1.0.0
+  #   container_name: mailhog
+  #   environment:
+  #     MH_SMTP_BIND_ADDR: 0.0.0.0:2525
+  #   ports:
+  #     - 2525:2525
+  #     - 8025:8025
+  #   networks:
+  #     - app-net
+  # e2e:
+  #   image: cypress
+  #   build: ./e2e
+  #   container_name: cypress
+  #   depends_on:
+  #     - app
+  #   networks:
+  #     - app-net
+  #   environment:
+  #     - CYPRESS_baseUrl=http://app:8080
+  #     - CYPRESS_execTimeout=864000
+  #     - CYPRESS_taskTimeout=864000
+  #     - CYPRESS_numTestsKeptInMemory=100000
+  #     - CYPRESS_chromeWebSecurity=false
+  #     - CYPRESS_defaultCommandTimeout=5000
+  #     - DISPLAY # you must run "xhost +local:root" locally
+  #   command: npx cypress open
+  #   volumes:
+  #     - /tmp/.X11-unix:/tmp/.X11-unix
+  #     - ../../api:/app/api
+  #     - ../../docs/docs:/app/docs
+  #     - ../../cypress:/app/cypress
+  #     - ../../cypress.json:/app/cypress.json
+  # docs:
+  #   image: squidfunk/mkdocs-material
+  #   container_name: docs
+  #   depends_on:
+  #     - app
+  #   ports:
+  #     - 8000:8000
+  #   networks:
+  #     - app-net
+  #   volumes:
+  #     - ../../docs:/docs
+  #   # this is a bit of pain - need to chage and extend the docker image, and install inotify tools so can watch the folder then rebuild.. needs a --watch switch :/
+  #   #command: serve -a 0.0.0.0:8000 # - start on port 8000 for hot reloading etc
+  #   command: build # - just build into ./docs/site and exit

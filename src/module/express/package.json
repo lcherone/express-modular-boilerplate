@@ -1,0 +1,15 @@
+{
+  "name": "@module/express",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-device": "^0.4.2",
+    "express-session": "^1.17.0",
+    "express-fileupload": "^1.1.1-alpha.3",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.6.1"
+  }
+}

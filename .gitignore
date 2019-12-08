@@ -1,0 +1,10 @@
+.env
+.vscode/
+.DS_Store
+node_modules/
+package-lock.json
+
+# vscode-server container cache
+.devcontainer/.vscode-server/bin
+.devcontainer/.vscode-server/data
+.devcontainer/.vscode-server/extensions

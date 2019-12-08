@@ -1,0 +1,8 @@
+#authtoken: YOUR TOKEN HERE
+#region: eu
+web_addr: 0.0.0.0:4040
+tunnels:
+    app:
+        proto: http
+        addr: app:8080
+        inspect: true

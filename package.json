@@ -1,0 +1,33 @@
+{
+  "name": "express-modular-boilerplate",
+  "version": "0.0.1",
+  "private": true,
+  "main": "src/",
+  "scripts": {
+    "start": "nodemon src/index.js --watch ./src",
+    "dev": "nodemon src/index.js --watch ./src",
+    "generate-jwt-certs": "cd ./src/module/jwt && bash generate.certs.sh",
+    "export-database": "cd ./api && npm run export-database",
+    "import-database": "cd ./api && npm run import-database",
+    "docker-dev": "cd ./.devcontainer/docker && bash ./start.sh",
+    "docker-clean": "cd ./.devcontainer/docker && bash ./clean.sh"
+  },
+  "dependencies": {
+    "@module/encryption": "file:./src/module/encryption",
+    "@module/express": "file:./src/module/express",
+    "@module/jwt": "file:./src/module/jwt",
+    "@module/lxd": "file:./src/module/lxd",
+    "@module/minio": "file:./src/module/minio",
+    "@module/mysql": "file:./src/module/mysql",
+    "@module/socket.io": "file:./src/module/socket.io",
+    "@module/test": "file:./src/module/test",
+    "@module/utils": "file:./src/module/utils",
+    "@routes/index": "file:./src/routes/index",
+    "@routes/user": "file:./src/routes/user"
+  },
+  "devDependencies": {
+    "debug": "^3.2.6",
+    "dotenv": "^6.0.0",
+    "nodemon": "1.18.4"
+  }
+}

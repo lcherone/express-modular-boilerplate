@@ -1,0 +1,39 @@
+{
+  "name": "express-modules",
+  "dockerComposeFile": "./docker/docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/var/www/html",
+  "shutdownAction": "stopCompose",
+  "settings": {
+    "workbench.colorTheme": "Visual Studio Light",
+    "workbench.iconTheme": "vscode-great-icons",
+    "editor.fontFamily": "'SFMono-Regular',Consolas,'Liberation Mono',Menlo,Courier,monospace",
+    "editor.fontSize": 10,
+    "editor.fontLigatures": true,
+    "terminal.integrated.rendererType": "dom",
+    "terminal.integrated.fontSize": 12,
+    "git.autofetch": true,
+    "git.autorefresh": false,
+    "extensions.ignoreRecommendations": true,
+    "telemetry.enableTelemetry": false,
+    "npm.enableScriptExplorer": true,
+    "explorer.confirmDelete": false,
+    "html.format.wrapLineLength": 0,
+    "files.associations": {
+      "*.ejs": "html"
+    },
+    "vetur.validation.template": false,
+    "editor.formatOnSave": false
+  },
+  "extensions": [
+    // theme and icons
+    "emmanuelbeziat.vscode-great-icons",
+    // intellisense
+    "visualstudioexptteam.vscodeintellicode",
+    "christian-kohler.path-intellisense",
+    "leizongmin.node-module-intellisense",
+    //
+    "hookyqr.beautify",
+    "dbaeumer.vscode-eslint"
+  ]
+}

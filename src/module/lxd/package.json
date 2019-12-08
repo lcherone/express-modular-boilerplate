@@ -1,0 +1,8 @@
+{
+  "name": "@module/lxd",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "lxc-query": "^1.0.12"
+  }
+}

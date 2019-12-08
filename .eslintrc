@@ -1,0 +1,15 @@
+{
+    "root": true,
+    "parserOptions": {
+        "ecmaVersion": 2017
+    },
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "rules": {
+        "space-before-function-paren": "off",
+        "no-console": "off",
+        "no-debugger": "off"
+      }
+}
